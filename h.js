@@ -208,8 +208,16 @@
 //hence it gets added in a queue which gets called when we finish rest of the tasks
 
 //so whats the benfit???
-//
 
+
+//you might think since the i/o task keep happening in the backhground and our threads gets 
+//to do other cpu intensive task but evn if the async task gets comp in background 
+//it would still be stuck in quuee it would enter call stack only when all other cpu taks have 
+//ended basically end line of the code where thread gets free again
+
+//this still is an advantage as in sync the total time would have been sum of both i/o + cpu
+
+//but here total time is the one which is larger wetheer it is i/0 or cpu
 
 
 
@@ -240,21 +248,21 @@
 // console.log(d);
 // console.log("Done!");
 
-console.log("hi");
+// console.log("hi");
 
-function timeout()
-{
-  console.log("Click the button");
-}
+// function timeout()
+// {
+//   console.log("Click the button");
+// }
 
-setTimeout(timeout,2000);
-let a = 0;
-for(let i=0;i<1000000;i++)
-{
-  a += 1;
-}
-console.log(a);
-console.log("hi this is div");
+// setTimeout(timeout,2000);
+// let a = 0;
+// for(let i=0;i<1000000;i++)
+// {
+//   a += 1;
+// }
+// console.log(a);
+// console.log("hi this is div");
 
 //is case mai bhi settimeout async hai vo timeout fn ko tbhi call krega jab 1000ms passs ho jaenge
 //yha par bhi hum jo loop lenge vo jada time lega par phir bhi loop ke baad wali statements pehle 
@@ -289,3 +297,34 @@ console.log("hi this is div");
 //get empty because we reach an empty ;ine 
 //it gets empty whem we finish all cpu tasks or end line of the code
 //after tghe the async code from quue gets pulled into the call stack
+
+//error first callback 
+
+const fs = require("fs");
+
+function print(err,data)
+{
+  if(err){
+    console.log("some error occured")
+  }
+  else{
+    console.log(data);
+  }
+}
+
+fs.readFile("a.txt","utf-8",print);
+
+console.log("hi am div");
+
+//these aync functions have something called error first callback
+//this is the way these are designed the main async function calls the callback function 
+//if data is not found it defines the error as smthg as a obj but otherwise err is null
+//and data is fed whatever the file had 
+
+//this is there design and we have to follow it 
+
+//so to summarise aync func keep running in the background so thread does not remain idle 
+//and do other cpu intensive tasks it gets free only at the end lineof the code 
+//and then event loop pushes it into the call stack
+//time in settimeout only gaurantees when will the callback go from webapi to quuee not when it
+//will enter call stack
