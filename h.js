@@ -300,21 +300,21 @@
 
 //error first callback 
 
-const fs = require("fs");
+// const fs = require("fs");
 
-function print(err,data)
-{
-  if(err){
-    console.log("some error occured")
-  }
-  else{
-    console.log(data);
-  }
-}
+// function print(err,data)
+// {
+//   if(err){
+//     console.log("some error occured")
+//   }
+//   else{
+//     console.log(data);
+//   }
+// }
 
-fs.readFile("a.txt","utf-8",print);
+// fs.readFile("a.txt","utf-8",print);
 
-console.log("hi am div");
+// console.log("hi am div");
 
 //these aync functions have something called error first callback
 //this is the way these are designed the main async function calls the callback function 
@@ -328,3 +328,38 @@ console.log("hi am div");
 //and then event loop pushes it into the call stack
 //time in settimeout only gaurantees when will the callback go from webapi to quuee not when it
 //will enter call stack
+
+// class Rectangle{
+//   constructor(width,height,color){
+//     this.width = width;
+//     this.height = height;
+//     this.color = color;
+//   }
+//   area(){
+//     const area = this.width * this.height;
+//     return area;
+//   }
+//   paint(){
+//     console.log("painting with this color" + this.color);
+//   }
+// }
+
+// const rect = new Rectangle(2,4,"red");
+// const area = rect.area();
+// rect.paint();
+// console.log(area);
+
+
+const date = new Date();
+console.log(date.getDate());
+console.log(date.getDay());
+console.log(date.getMonth());
+
+//maps in js are similar to maps in cpp and the primitive 
+//objects in js
+const map = new Map();
+map.set("name", "div");
+map.set("age",19);
+console.log(map.get("name"));
+
+
