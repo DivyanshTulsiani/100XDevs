@@ -30,15 +30,15 @@
 //few advantages
 
 
-function waitfor3S(resolve){
-  setTimeout(resolve,3000);
-}
+// function waitfor3S(resolve){
+//   setTimeout(resolve,3000);
+// }
 
-function main(){
-  console.log("main is called");
-}
+// function main(){
+//   console.log("main is called");
+// }
 
-waitfor3S(main);
+// waitfor3S(main);
 
 //so the thing above is just a wrapper for settimeot
 //we pass the main function as an arg in waitfor 3s func 
@@ -46,3 +46,98 @@ waitfor3S(main);
 //hence main gets called after 3s
 //which could have been done directly by settimeout
 //hence this is just a wrapper for settimeot
+
+// function random(){
+
+// }
+
+// let p = new Promise(random);
+// console.log(p);
+
+//it logs out Promise pending 
+//as the orignal defination says we can see promise tells us about the 
+//eventual completion 
+//for this eventual completion hum Promise ka object initialise krvate vkt
+//usme ek function pass krte ab iss function ke andar bhi ek function use
+//hota hai jisko hum resolve kehte hai--> jab yeh resolve function call hoga
+//tab promise ko pta chl jaega ki ab hum task krskete hai
+//iske baad vo .then ka use krke jiss function ko call krna chahta tha vo call hojaega
+//ab vo jo resolve function tha vo actually setitime out hi use kr rha tha
+//par humare end user ko vo nhi dikhega
+
+// function random(resolve){
+//   resolve();
+// }
+
+// let p = new Promise(random);
+
+// function callback(){
+//   console.log("This has been executed")
+// }
+// p.then(callback);
+
+//in this case jis fucntion pe humara promise depend  krtaa tha uska bhi jo pehla resolve function tha 
+//vo instantly call hogya to promise instantly clearance milgyi aur use p.thn ko instantly execute krdiya
+
+// function random(resolve){
+//   setTimeout(resolve,3000);
+// }
+
+// let p = new Promise(random);
+
+// function callback(){
+//   console.log("This has been executed")
+// }
+// p.then(callback);
+
+//ab is case mai humara promise jis random func pe depend krta tha uska bhi jo pehla resolve function tha 
+//vo settimeout ki vjh se 3000ms ke baad call hua to humare promise ko 3s ke baad clearance milli 
+//hence humara callback function bhi 3s ke baad call hua 
+//toh ek trh se humne setimeout ko bina use kre promise ko use krke asynchronoulsy casllback kiya 
+//yeh sb directly callback se hoskta tha par hum isse promise se krenge to better rhega
+
+// const fs = require("fs");
+
+// function readThefile(finalvalue){
+//   fs.readFile("a.txt","utf-8",function(err,data){
+//     finalvalue(data);
+//   })
+// }
+
+// function readfile(){
+//   return new Promise(readThefile);
+// }
+
+// const p = readfile();
+
+
+
+// function abfinaldo(v){
+//   console.log(v);
+// }
+// p.then(abfinaldo)
+
+// console.log("hi this should be printed first");
+
+// function thissetstime(timer){
+//   setTimeout(timer,3000);
+// }
+
+// function settimeoutpromisified(){
+//   return new Promise(thissetstime)
+// }
+
+// const p = settimeoutpromisified()
+
+// function finalvalue(){
+//   console.log("timer has finished");
+// }
+
+// p.then(finalvalue)
+
+
+//now lets write our own promisec class and understand its funcitionality
+
+class promise2{
+  constructor()
+}
