@@ -138,6 +138,66 @@
 
 //now lets write our own promisec class and understand its funcitionality
 
-class promise2{
-  constructor()
+// class Promise2{
+//   constructor(fn){
+//     function afterdone(){
+//       this.resolve();
+//     }
+//     fn(afterdone);
+//   }
+//   then(callback){
+//     this.resolve = callback;
+//   }
+// }
+
+//general schema
+//promise class -> implementation of a promisified async function -> using promisifie functions
+
+
+//now lets write our own promisified verison of fs.read file
+// const fs = require("fs");
+// function ReadTheFileNow(resolve){
+//     fs.readFile("a.txt","utf-8",function (err,data){
+//       resolve(data);
+//     });
+// }
+
+// function readfile(){
+//   return new Promise(ReadTheFileNow);
+// }
+// const p = readfile();
+
+// function callback(cont){
+//   console.log(cont);
+// }
+
+// p.then(callback);
+class Promise2{
+  constructor(fn){
+    function afterdone(){
+      this.resolve();
+    }
+    fn(afterdone);
+  }
+  then(callback){
+    this.resolve = callback;
+  }
 }
+
+console.log("hi this should be printed first");
+
+function thissetstime(timer){
+  setTimeout(timer,3000);
+}
+
+function settimeoutpromisified(){
+  return new Promise2(thissetstime);
+}
+
+let p = settimeoutpromisified()
+
+function finalvalue(){
+  console.log("timer has finished");
+}
+
+p.then(finalvalue)
