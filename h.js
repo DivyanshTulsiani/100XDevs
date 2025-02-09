@@ -350,15 +350,45 @@
 // console.log(area);
 
 
-const date = new Date();
-console.log(date.getDate());
-console.log(date.getDay());
-console.log(date.getMonth());
+// const date = new Date();
+// console.log(date.getDate());
+// console.log(date.getDay());
+// console.log(date.getMonth());
 
-//maps in js are similar to maps in cpp and the primitive 
-//objects in js
-const map = new Map();
-map.set("name", "div");
-map.set("age",19);
-console.log(map.get("name"));
+// //maps in js are similar to maps in cpp and the primitive 
+// //objects in js
+// const map = new Map();
+// map.set("name", "div");
+// map.set("age",19);
+// console.log(map.get("name"));
 
+let datafile = "hello this is a   valid request";
+function cleans(str){
+  let newstr = "";
+  let counter = 0;
+  let i=0;
+  while(i<str.length){
+    if(str[i] != " " && counter === 0){
+      newstr += str[i];
+      i++;
+    }
+    else if(str[i] != " " && counter >= 1){
+      newstr += str[i];
+      counter = 0;
+      i++;
+    }
+    else if(str[i] === " "){
+      if(counter === 0){
+        counter += 1;
+        newstr += str[i];
+      }
+      else{
+        counter += 1;
+      }
+      i++;
+    }
+  }
+  return newstr;
+}
+datafile = cleans(datafile);
+console.log(datafile);
