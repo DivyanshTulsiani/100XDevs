@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  </head>
+  <body>
+    <div>
+      <input type="text"></input>
+      <button onclick="addtodo()">Add Todo</button>
+    </div>
+    <script>
+      function del(index)
+      {
+        const element = document.getElementById(index);
+        element.parentNode.removeChild(element);
+      }
+      let ctr = 0;
+      function addtodo()
+      {
+        // const inputval = document.querySelector("input");
+        // const inputvalue = inputval.value;
+        // const newnode = document.createElement("div");
+        // newnode.setAttribute("id", ctr);
+        // newnode.innerHTML = "<div>" + inputvalue + "</div>" + "<button onclick = 'del("+ctr+")'  >Delete!</button>"
+        // const paren = document.querySelector("body");
+        // paren.appendChild(newnode);
+
+        //slightly better way to do this
+        //to make this a two way process we create a div and a button
+        //appen these elements with the content we want in them
+        //now add this div and button to a newly created div
+        //and then add this div which has two items in it to the body
+        
+        //this way we are only appending things one by one instead
+        //of writing that ugly string code that hade div and button as it
+        //is quite prone to mistakes
+        
+        const inputval = document.querySelector("input");
+        const inputvalue = inputval.value;
+        const newnode = document.createElement("div");
+        const newdiv = document.createElement("div");
+        const newbutton = document.createElement("button");
+        newdiv.innerHTML = inputvalue;
+        newbutton.innerHTML = "Delete!";
+        newnode.appendChild(newdiv);
+        newnode.appendChild(newbutton);
+        document.querySelector("body").appendChild(newnode);
+      }
+    </script>
+  </body>
+</html>
