@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  </head>
+  <body>
+    <input type = "text"></input>
+    <button onclick="addtodo()">Add Todo!</button>
+    <script>
+      //todos=[] is the state here 
+      let todos = [];
+      function addtodo(){
+        todos.push({
+          title: document.querySelector("input").value
+        })
+        render();
+      }
+      //this is our component,state and componet our two basic thing 
+      //that will make our life a lot more easier so basically 
+      //we will create a wireframe type design which will be our component
+      //and in this component we will add our data from the state
+      //these two together will produce our final req element
+      //this will save us from  writing complex DOM again and again
+      function createtodocomponent(){
+        const newdiv = document.createElement("div");
+        const newnode = document.createElement("div");
+        const newbutton = document.createElement("button");
+        const data = todos[todos.length - 1].title
+        newnode.innerHTML = data;
+        newbutton.innerHTML = "Delete";
+        newdiv.appendChild(newnode);
+        newdiv.appendChild(newbutton);
+        return newdiv;
+      }
+      function render(){
+        const element = createtodocomponent();
+        document.querySelector("body").appendChild(element);
+      }
+    </script>
+  </body>
+</html>
