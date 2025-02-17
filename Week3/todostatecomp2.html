@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  </head>
+  <body>
+    <input type = "text"></input>
+    <button onclick="addtodo()">Add Todo!</button>
+    <button onclick="deletefirsttodo()">Delete First</button>
+    <button onclick="deletelasttodo()">Delete Last</button>
+    <div id = "todo"></div>
+    <script>
+      //todos=[] is the state here 
+      let todos = [];
+      function addtodo(){
+        todos.push({
+          title: document.querySelector("input").value
+        })
+        render();
+      }
+      function deletefirsttodo(){
+        todos.splice(0 , 1);
+        render();   
+      }
+      function deletelasttodo(){
+        todos.splice(todos.length - 1 , 1);
+        render();   
+      }
+      function deleteelement(index){
+        todos.splice(index,1);
+        render();
+      }
+      //this is our component,state and componet our two basic thing 
+      //that will make our life a lot more easier so basically 
+      //we will create a wireframe type design which will be our component
+      //and in this component we will add our data from the state
+      //these two together will produce our final req element
+      //this will save us from  writing complex DOM again and again
+      function createtodocomponent(todo,index){
+        // const newdiv = document.createElement("div");
+        // const newnode = document.createElement("div");
+        // // const newbutton = document.createElement("button");
+        // const data = todo.title
+        // newnode.innerHTML = data;
+        // newdiv.innerHTML = "<button onclick = 'deleteelement(" + index +")'>Delete!</button>"
+        // newdiv.appendChild(newnode);
+        // // newdiv.appendChild(newbutton);
+        // return newdiv;
+        
+
+        //set attribute helps us add the thngs inside the tag of our new elemnent
+        const newdiv = document.createElement("div");
+        const newnode = document.createElement("div");
+        const newbutton = document.createElement("button");
+        const data = todo.title
+        newnode.innerHTML = data;
+        newbutton.setAttribute("onclick", "deleteelement("+index+")");
+        newbutton.innerHTML = "Delete";
+        newdiv.appendChild(newnode);
+        newdiv.appendChild(newbutton);
+        return newdiv;
+      }
+      function render(){
+        const paren = document.getElementById("todo");
+        //if we do not clear the todo before running the for loop to add new one
+        //it would print the already exiting one agin as we go over the entire 
+        //todos array again and again this can be avoided by simply clearing
+        //the todo div ele before running the loo hence all of them 
+        //this would print all of them wilth the new one and the old one would
+        //habe been cleared beforehand
+        paren.innerHTML = "";
+        for(let i=0;i<todos.length;i++){
+          const element = createtodocomponent(todos[i],i);
+          paren.appendChild(element);
+        }
+        //the proceess of finding the change in the state and then
+        //changing out html using dom acc to the changes is a process
+        //called reconcillation in react
+
+        //we are sort of doing the same thing butin a ugly way
+      }
+    </script>
+  </body>
+</html>
