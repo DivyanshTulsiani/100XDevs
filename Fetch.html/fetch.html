@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fetch</title>
+  <script>
+    let url='https://pokeapi.co/api/v2/pokemon/pikachu'
+    document.addEventListener("DOMContentLoaded",(event)=>{
+      call()
+    })
+    async function call() {
+      try{
+        let resp =  await fetch(url)
+        if(!resp.ok)
+          throw new Error("call failed")
+        let json=await resp.json()
+        let b=document.getElementById('btn')
+        b.addEventListener('click',function (event){
+          let i=document.getElementById('feild')
+          console.log(i.value);
+          
+        })
+        let p=document.getElementById('imageid')
+        let imgURL=json.sprites.front_shiny
+        p.src=imgURL
+      }
+      catch(error){
+        console.log(error);
+        
+      }
+    }
+  </script>
+</head>
+<body>
+    <input type="text" id='feild'>
+    <button id="btn">
+      submit
+    </button>
+    <img src="" alt="" id="imageid">
+</body>
+</html>
