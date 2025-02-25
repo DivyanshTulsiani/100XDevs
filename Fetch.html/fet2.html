@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const url = 'https://bhagavad-gita3.p.rapidapi.com/v2/chapters/1/verses/1/';
+const options = {
+	method: 'GET',
+	headers: {
+		'x-rapidapi-key': '6ad2b20b5bmsh0ac2af39d69569bp136013jsn71874e3da2b5',
+		'x-rapidapi-host': 'bhagavad-gita3.p.rapidapi.com'
+	}
+};
+
+try {
+	const response = await fetch(url, options);
+	const result = await response.text();
+	console.log(result);
+} catch (error) {
+	console.error(error);
+}
+  </script>
+</body>
+</html>
