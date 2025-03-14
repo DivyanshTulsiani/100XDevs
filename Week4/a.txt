@@ -1,2 +1,2 @@
 hello this is the file i created to test my cli based tool 
-thankfyou
+thank you
