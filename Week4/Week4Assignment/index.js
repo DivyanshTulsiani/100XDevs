@@ -124,9 +124,57 @@ app.post('/todos',function(req,res){
 })
 
 
+app.put('/todos/:id',function(req,res){
+  let reqid = req.params.id;
+  let statusoftodo = req.body.stat;
+  const todoindexfound = todofinder(reqid);
+
+  if(todoindexfound === -1){
+    return res.status(404).json({error:"todo not found"});
+  }
+
+  let updateddata = req.body.task;
+  todoarray[todoindexfound].task = updateddata
+  todoarray[todoindexfound].statuscode = statusoftodo
+
+  writetodos(todoarray).then(function(){
+    res.status(201).json({updation: "Your todo has succesfully been updated"});
+  })
+  .catch(function(){
+    res.status(500).json({error:"An error occured while finding your todo"});
+  })
+
+
+
+})
+
+function todofinder(idgiven){
+  readtodos().then(function(data){
+    todoarray = data;
+  });
+    for(let i =0;i<todoarray.length;i++){
+      if(todoarray[i].id === idgiven){
+        return i;
+      }
+    }
+    return -1;
+}
+
 app.delete('/todos/:id',function(req,res){
     let reqid = req.params.id;
-    
+    const todoindexfound = todofinder(reqid);
+
+    if(todoindexfound === -1){
+      return res.status(404).json({error:"todo not found"});
+    }
+    todoarray.splice(todoindexfound,1);
+    writetodos(todoarray).then(function(){
+      res.status(201).json({status:"your todo is succesfully deleted"});
+
+    })
+    .catch(function(){
+      res.status(500).json({error:"your todo could not be deleted"});
+    })
 })
 
 
