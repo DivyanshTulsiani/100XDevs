@@ -177,5 +177,6 @@ app.delete('/todos/:id',function(req,res){
     })
 })
 
+//delete all 
 
 app.listen(3000)
