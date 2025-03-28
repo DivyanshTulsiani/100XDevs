@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name = "viewport" content="width=device-width">
+  </head>
+  <body>
+    Linkedin
+    <div id="posts"></div>
+    <script>
+      async function getRecentpost() {
+        console.log("hello before  request");
+        const response = await fetch("some link"); //method get post bhi deskte hai fetch ka fetch ka mtlb sirf get nhi hota by default get hota hai
+        const data = response.json();
+        console.log(data);
+        console.log("request processed");
+        document.getElementById("posts").innerHTML = data.body;
+
+      }
+      //dono mai lghbg same hi hoga 
+      //asyn likh dete hai fir await krate hai to niche vala taska upar wale ke baad hi hota hai
+      //yhi same cheez hum promise mai then use krke krte hai kis succes hone pe then ke andar wala functionn call hoga
+
+      //promisified version
+      //we know that fetch is returning a promise as it is an io bound opn and happens in background
+      //thus we use .then to do task on its completion
+      //promise class returns an obhject which we say is a promise where we call its then functions
+      console.log("before request")
+      fetch("some link")
+      .then(function(response){
+        const data = response.json().then(function(data){
+          console.log(data);
+          console.log("request processed"); 
+          document.getElementById("posts").innerHTML = data.body
+        })
+      })
+      getRecentpost();
+    </script>
+  </body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.6/axios.min.js"></script>
+</head>
+
+<body>
+    <!-- //using axios -->
+  <div id="posts"></div>
+  <script>
+    async function fetchPosts() {
+      const res = await axios.get("https://jsonplaceholder.typicode.com/posts/1");
+      document.getElementById("posts").innerHTML = res.data.title;
+    }
+
+    fetchPosts();
+  </script>
+</body>
+
+</html>
