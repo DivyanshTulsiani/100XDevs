@@ -49,6 +49,12 @@ function readtodos(){
 //   }
 // }
 
+//very big misconception of mine cleared today
+//promises in particlular can help us only for async operartions i mistook that any thing insidide it is alway
+//async though i knew somehow in back of my mind it was unclear
+//async fs.readfile is async already promises are just a better way to use this for a lot of reasons 
+//async await is just syntactic sugar over these promises
+
 function writetodos(data){
   return new Promise(function(resolve,reject){
     fileobject.writeFile(FILENAME,JSON.stringify(data),function(err){
@@ -61,6 +67,8 @@ function writetodos(data){
     })
   })
 }
+
+//this helps in taking inputs from body
 
 app.use(bodyparser.json());
 
