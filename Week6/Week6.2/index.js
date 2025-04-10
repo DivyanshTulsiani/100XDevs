@@ -68,6 +68,10 @@ app.post('/signin',function(req,res){
 function auth(req,res,next){
   //req,res are smame here as they are in other places
   const token = req.headers.token
+
+  //verify is best as we would have decoded the hacker could have stole our password and his
+  //token would have worked but verify only succeds if jwtsecret is same which helps us even
+  //if passsword is leaked it wont get verify
   const decodedInformation = jwt.verify(token,JWT_SECRET)
 
   if(decodedInformation.username){
