@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Auth Website</title>
+  </head>
+  <script>
+    async function signup(){
+      const username = document.getElementById("signup-username").value
+      const password = document.getElementById("signup-password").value
+        try{
+          const response = await fetch("http://localhost:4000/signup",{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
+      })
+      if(response.ok){
+        alert("You are signed up")
+      }
+        }
+        catch(e){
+          alert("Please check your credentials")
+        }
+    }
+
+
+    async function signin(){
+      const username = document.getElementById("signin-username").value
+      const password = document.getElementById("signin-password").value
+        try{
+          const response = await fetch("http://localhost:4000/signin",{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
+      })
+      if(response.ok){
+        alert("You are signed in")
+        const data = await response.json()
+        console.log(data.token)
+        localStorage.setItem("token",data.token)
+      }
+        }
+        catch(e){
+          alert("Please check your credentials")
+        }
+    }
+
+    async function getUserInformation(){
+      try{
+        const response = await fetch("http://localhost:4000/me",{
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "token": localStorage.getItem("token")
+          }
+        })
+        if(response.ok){
+          document.getElementById("signup").innerHTML = ""
+          document.getElementById("signin").innerHTML = ""
+        }
+
+        const data = await response.json()
+        document.getElementById("information").innerHTML = "Username: " + data.username + "Password: " + data.password
+      }
+      catch(e){
+        // document.getElementById("signup").innerHTML = "" 
+        
+        // document.getElementById("signin").innerHTML = ""
+        document.getElementById("information").innerHTML = ""
+      }
+    }
+    getUserInformation();
+
+    function logout(){
+      localStorage.removeItem("token")
+    }
+  </script>
+  <body>
+      <div id = "signup">
+        Signup
+        <input id ="signup-username"  type="text" name="username" placeholder="Username">
+        <input id = "signup-password" type="password" name="password" placeholder="Password">
+        <button onclick="signup()">Submit</button>
+    </div>
+    <div id = "signin">
+      Signin
+      <input id = "signin-username" type="text" name="username" placeholder="Username">
+      <input id="signin-password"  type="password" name="password" placeholder="Password">
+      <button onclick="signin()">Submit</button>
+  </div>
+  <div>
+    User information: 
+    <div id="information">
+
+    </div>
+  </div>
+  <div>
+  <button onclick="logout()">Logout</button>
+  </div>
+
+  </body>
+</html>

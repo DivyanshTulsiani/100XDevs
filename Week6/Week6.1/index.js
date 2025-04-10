@@ -135,26 +135,28 @@ app.get('/me',function(req,res){
  //the backend or basically our server just decodes them to identify the user which
 
 
- //SO WHATS THE BENEFIT
-//jwt basically prevents 1 round trip from the backenf server and db for any user request
+//  SO WHATS THE BENEFIT
+// jwt basically prevents 1 round trip from the backenf server and db for any user request
 
-//jwt can be stored in a cookie header or a normal auth header
+// jwt can be stored in a cookie header or a normal auth header
 
-//It is encoded not encrypted
+// It is encoded not encrypted
 
-//imp question
-//do we have to go to the database to check if the jwt is right???
+// imp question
+// do we have to go to the database to check if the jwt is right???
 
-//the answer is no 
-//once the user signin again after signup wwe chck with the datab that are his 
-//crediantials right but once they are  verified we change the username of the user 
-//into a jwt and send this jwt back to the user once the user sends a /me request to us
-//the user send s only the jwt which is converred agian into the usernae now sice 
-//we can clearly knoe that this username is right as this jwt was uniquely made for 
-//that user only hence it lets it use  the endpoint 
+// the answer is no 
+// once the user signin again after signup wwe chck with the datab that are his 
+// crediantials right but once they are  verified we change the username of the user 
+// into a jwt and send this jwt back to the user once the user sends a /me request to us
+// the user send s only the jwt which is converred agian into the usernae now sice 
+// we can clearly knoe that this username is right as this jwt was uniquely made for 
+// that user only hence it lets it use  the endpoint 
 
-//on the othert hand if we used tokens while we signed in the database woul now be given 
-//our token which will be used in future when we used /me endpoint but it will call the 
-//database to check but using jwt we will avoid this call
+// on the othert hand if we used tokens while we signed in the database woul now be given 
+// our token which will be used in future when we used /me endpoint but it will call the 
+// database to check but using jwt we will avoid this call
+
+// for getting any data further the user will have to sen username password to db only jwt reduces one step only
 
 app.listen(4000);
