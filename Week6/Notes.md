@@ -55,3 +55,11 @@ now we will send the token on every subsequent req to validate our identity
 3. But u can only verify(means that it was u only who created the account) u then need the  jwt secret variable 
 
 4. this makes jwt confusing as anyone can decode but hey u can verify only if u have the secvar
+
+# Bank cheques and json web token
+
+1. There are a lot of similarities here bank issues a cheque now anyone can see the check you signed and may even create a duplicate themselves but the wont accept theirs as it **authenticaterss/verifies** the user who has sent the cheque
+
+2. JWTs are  very similar they can also be issued and replicates as we say on jwt.io as anyone could decode and create a jwt that decodes exactly the same but...
+
+3. Here is the catch the jwt is synced to our secret variable which will only be accesible to us and this jwt gets verified using our secret variable and our **secret variable verifues only our jwt** hence other jwt which might look similar wont be able to enter the site
