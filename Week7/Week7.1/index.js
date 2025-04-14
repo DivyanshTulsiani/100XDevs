@@ -76,18 +76,33 @@ app.post('/signin',async function(req,res){
 
 })
 
-app.post('/todo',auth,function(req,res){
+app.post('/todo',auth,async function(req,res){
   const userId = req.userId
+
+  await TodoModel.create({
+    title: req.body.title,
+    done: false,
+    userId: userId
+
+  })
   res.json({
     userId: userId
   })
+  res.json({
+    message: "todo  created"
+  })
 })
 
-app.get('/todos',auth,function(req,res){
+app.get('/todos',auth,async function(req,res){
   const userId = req.userId
 
-  res.json({
+  const todos = await TodoModel.find({
     userId: userId
+  })
+
+
+  res.json({
+    todos
   })
 })
 
