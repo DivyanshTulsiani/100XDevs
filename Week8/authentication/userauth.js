@@ -6,8 +6,8 @@ dotenv.config()
 
 
 
-async function userauth(req,res,next){
+// async function userauth(req,res,next){
 
-  const username = req.
+//   const username = req.
 
-}
+// }

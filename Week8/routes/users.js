@@ -2,10 +2,10 @@ const jwt = require('jsonwebtoken')
 const { Router } = require('express')
 const mongoose = require('mongoose')
 
-
+const { userMiddleware } = require('../middleware/user')
 const JWT_SECRET = process.env.JWT_SECRET
 
-const { userModel, adminModel } = require('../database/db')
+const { userModel, adminModel,purchasesModel, coursesModel } = require('../database/db')
 
 
 const userRouter = Router()
@@ -69,7 +69,28 @@ userRouter.post('/signin',async function(req,res){
   
 })
 
+userRouter.get('/purchases',userMiddleware,async function(req,res){
 
+  const userId = req.userId
+
+  try{
+    const purchases = await purchasesModel.find({
+      userId: userId
+    })
+
+    const coursesData = await coursesModel.find({
+      _id: { $in: purchases.map( (x) => x.course_id)}
+    })
+
+    res.json({
+      purchases,
+      coursesData
+    })
+  }
+  catch(e){
+    // console.log(e)
+  }
+})
 
 
 
