@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <script>
+    function increasecounter(){
+      const counter = document.getElementById("btn").innerHTML;
+      console.log(counter.split(" "))
+      const countervalue = counter.split(" ")[1];
+      const newcountervalue = parseInt(countervalue) + 1;
+      document.getElementById("btn").innerHTML = "Counter " + newcountervalue;
+    }
+  </script>
+  <head>
+
+  </head>
+  <body>
+    <button onclick="increasecounter()" id="btn">Counter 0</button>
+  </body>
+</html>
