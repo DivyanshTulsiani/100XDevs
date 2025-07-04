@@ -5,7 +5,7 @@
       const counter = document.getElementById("btn").innerHTML;
       console.log(counter.split(" "))
       const countervalue = counter.split(" ")[1];
-      const newcountervalue = parseInt(countervalue) + 1;
+      const newcountervalue = parseInt(countervalue) + 1000000000000000000;
       document.getElementById("btn").innerHTML = "Counter " + newcountervalue;
     }
   </script>
@@ -16,3 +16,57 @@
     <button onclick="increasecounter()" id="btn">Counter 0</button>
   </body>
 </html>
+
+import {useState} from "react";
+import './App.css'
+
+export default function App() {
+
+  //use state mai do cheeze hongi pehli vo variable jo change joga
+  //yeh variable ek number object ya fie ek array bhi hostka hai 
+  //dusrna hogas ek function jaisi cheez jisme hum agar uss variable ka newer form daale to vo change hojaye
+  const [todos,setTodos] = useState([
+    {
+      title: "Go to gym",
+      description: "Hit the gym hard",
+      done: false,
+    },
+  ]);
+
+  function addTodo(){
+    let newArray = [];
+
+    for(let i=0;i< todos.length; i++){
+      newArray.push(todos[i]);
+    }
+ 
+    newArray.push({
+      title: document.getElementById("title").value,
+      description: document.getElementById("desc").value,
+      done: true,
+    })
+
+    setTodos(newArray);
+    
+  }
+  
+  return <div>
+    <input type="text" placeholder="title" id="title"></input>
+    <input type="text" placeholder="description" id="desc"></input>
+    <button onClick={addTodo}>Add Todo</button>
+    {JSON.stringify(todos)}
+    <br/>
+    {todos.map((todo) => (<Todo title={todo.title} description={todo.description} done={todo.done}/>))}    
+    
+  </div>
+
+    function Todo(props){
+      return(
+        <div>
+          <h1>{props.title}</h1>
+          <h1>{props.description}</h1>
+          <h1>{props.done ? "Completed" : "Not done"}</h1>
+        </div>
+      )
+    }
+}
