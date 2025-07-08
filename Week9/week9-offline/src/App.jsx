@@ -7,29 +7,51 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+   <div style={{backgroundColor: "#95a5a6",height: "100vh"}}>
+    <PostComponent/>
+    <PostComponent/>
+    <PostComponent/>
+   </div>
   )
 }
+//structure ur app in componments so that
+//a lot of devs can develop/use it 
+//define a state of ur application
+
+function PostComponent(){
+  
+  return <div style={{background:"white",width:350,borderRadius:20,padding:20,margin: "0 auto"}}>
+    <div style={{ display: "flex"}}>
+      <img src="https://picsum.photos/100" alt="test"
+      style = {{
+        width: 40,
+        height: 40,
+        borderRadius: 20
+      }}/>
+
+      <div style={{marginLeft: 10}}>
+        <div>
+          100xdevs
+        </div>
+        <div>
+          23,388 followers
+        </div>
+        <div>
+          12m
+        </div>
+      </div>
+    </div>
+
+    <div style={{marginTop:10}}>
+      What to know how to win big Check out these folks won 6000$ in bounties
+    </div>
+    </div>
+  
+}
+
+
+
+
 
 export default App
+ 
