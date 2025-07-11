@@ -1,20 +1,81 @@
+import { PostComponent } from './post'
+
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  let [count, setCount] = useState(1)
+
+  const [posts,setPosts] = useState([])
+
+  // const posts = [{}]
+
+  const postsComponents = posts.map((post) => (
+    <PostComponent
+    name = {post.name}
+    subtitle = {post.subtitle}
+    time = {post.time}
+    image = {post.image}
+    description = {post.description}
+    />
+  ))
+
+function addPost(){
+  // posts.push({
+  //   name:"divy",
+  //   subtitle:"1000535 followers",
+  //   time:"6m ago",
+  //   image:"https://picsum.photos/100",
+  //   description:"Learn how to win big and enjoy life"
+  // })
+
+  setPosts([...posts,{
+    name:"divy",
+    subtitle:"1000535 followers",
+    time:"6m ago",
+    image:"https://picsum.photos/100",
+    description:"Learn how to win big and enjoy life"
+  }])
+}
+
+function Inc(){
+  count += 1;
+  setCount(count)
+}
+
+
+
 
   return (
    <div style={{backgroundColor: "#95a5a6",height: "100vh"}}>
 
-    
-    <PostComponent name="100xdevs" subtitle="23,668 followers" time="21m" description="Want to know how to learn to get 6000$ in bounties"/>
-    <br/>
-    <PostComponent name="raman" subtitle="23,000 followers"/>
-    <br/>
-    <PostComponent/>
+   {/* <ToggleMessage/>
+   <ToggleMessage/>
+   <ToggleMessage/> */}
+
+    {/* <Notification/> */}
+
+    {/* <button onClick={addPost}>Add post</button>
+
+    {
+      postsComponents
+    } */}
+
+
+      <div  style={{display: "flex"}}>
+        <div style={{background: "red", borderRadius: 20, width: 20, height: 25, padding: 10}}>
+          {count}
+        </div>
+        <div>
+          <img style={{cursor:"pointer",height:40}} src={"https://static.vecteezy.com/system/resources/previews/022/151/493/non_2x/bell-notification-icon-symbol-image-illustration-of-the-alarm-alert-symbol-in-eps-10-vector.jpg"}/>
+        </div>
+
+      </div>
+      <button onClick ={Inc}>Increase Count</button>
+
+
    </div>
   )
 }
@@ -32,43 +93,52 @@ function App() {
 //issi ki madad se to humare componts variable honge jisse hum
 //component ko reuse krr paenge with diff values
 
-function PostComponent(props){
-  
-  return <div style={{background:"white",width:350,borderRadius:20,padding:20,margin: "0 auto"}}>
-    <div style={{ display: "flex"}}>
-      <img src="https://picsum.photos/100" alt="test"
-      style = {{
-        width: 40,
-        height: 40,
-        borderRadius: 20
-      }}/>
-
-      <div style={{marginLeft: 10}}>
-        <div>
-          {props.name}
-        </div>
-        <div>
-          {props.subtitle}
-        </div>
 
 
-        {(props.time !== undefined) ? <div style={{display: "flex"}}>
-          <div>
-            {props.time}
-          </div>
-          <img src='https://media.istockphoto.com/id/1031786258/vector/watch.jpg?s=612x612&w=0&k=20&c=U_7Euy34YQwrg2zgJw_VutYLUjDHYyKUr483e-w29RE=' 
-          style={{height:10,width:10,padding:5}}/>
-        </div> : <div></div> } 
-        
-      </div>
+// const ToggleMessage  = () =>{
+//     // let isVisible = true
+
+//     let [isVisible, setVisible] = useState(true);
+
+//     console.log("Re-rendered")
+//     function toggle(){
+//       isVisible = !isVisible
+//       setVisible(isVisible)
+//     }
+
+//     return (
+//       <div>
+//         <button onClick={toggle}>
+//             Toggle Message
+//         </button>
+//         {isVisible ? <p>THis is message is conditionally rendered </p> : <div></div>}
+//       </div>
+//     )
+// }
+
+const Notification  = () =>{
+  // let isVisible = true
+
+  let [notificationCount, setNotificationCount] = useState(0);
+
+  console.log("Re-rendered")
+  function setNotification(){
+      notificationCount +=  1;
+      setNotificationCount(notificationCount)
+  }
+
+  return (
+    <div>
+      <button onClick={setNotification}>
+          Increase Count {notificationCount}
+      </button>
+
     </div>
-
-    <div style={{marginTop:10}}>
-      {props.description}
-    </div>
-    </div>
-  
+  )
 }
+
+
+
 
 //hw
 function ProfileCard(){
