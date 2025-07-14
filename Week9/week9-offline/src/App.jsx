@@ -9,52 +9,42 @@ import { use } from 'react'
 
 
 
+
 function App(){
 
-  const[currentTab, setcurrrentTab] = useState("feed")
+  const [Todo,setTodo] = useState(0)
+
+  const [TodoD,setTodoD] = useState(1)
 
   useEffect(()=>{
-    console.log("Senc backend request for ",currentTab)
-  },[currentTab])
-
-  const [showTimer, setShowTimer] = useState(true);
-  useEffect(()=>{
-    setInterval(()=>{
-      console.log("Inside clock 2")
-      setShowTimer(currentValue => !currentValue)
-    },5000)
-  },[])
+    fetch('https://jsonplaceholder.typicode.com/todos/' + Todo)
+    .then(async res => {
+      const json = await res.json()
+      setTodoD(json)
+    });
+  },[Todo])
 
 
   return(
     <div>
-      {showTimer && <Timer/>}
-      <div>
-        hj
-      </div>
+      <button onClick = {()=>{
+        setTodo(1)
+      }}>Todo 1</button>
+      <button onClick = {()=>{
+        setTodo(2)
+      }}>Todo 2</button>
+      <button onClick = {()=>{
+        setTodo(3)
+      }}>Todo 3</button>
+      <button onClick = {()=>{
+        setTodo(4)
+      }}>Todo 4</button>
+      {TodoD.title}
+
     </div>
 
-)
+
+  )
 }
-
-
-
-
-const Timer = () => {
-    const [seconds, setSeconds] = useState(0);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            console.log("Inside clock 1")
-            setSeconds(prev => prev + 1);
-        }, 1000);
-
-        return () => clearInterval(interval); // Cleanup on unmount
-    }, []);
-
-    return <div>{seconds} seconds elapsed</div>;
-};
-
-
 
 export default App
