@@ -1,74 +1,54 @@
 import { useState } from 'react'
+import { useRef } from 'react'  
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, Link, useNavigate, redirect} from "react-router-dom";
 
+
+
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
+    const [count,SetCount] = useState(0)
+
+    //now we see the problem we can start the clock but we need a variable
+    //to store the value it stopped at 
+
+    
+    // let timer = 0
+    //this wont work as everytime the count cahnges and it is a state var the
+    //comp app rerenders which makes timer = 0 again
+
+    //so lets use an state var
+    //this would work but since this is now a state var
+    //it would rerender when the timer is set
+    //so this inc 1 rerender 
+    // const [timer,SetTimer] = useState(0)
+
+    //here comes useRef it allows us to give ref a var
+    //but when the var changes it does not rerender
+
+    const timer = useRef();
+
+    function StartClock(){  
+        timer.current = setInterval(()=>{
+        SetCount(count => count + 1)
+      },1000)
+
+    }
+
+    function StopClock(){
+      clearInterval(timer.current)
+    }
+
+    return(
       <div>
-        <BrowserRouter>
-          <Link to="/">Allen</Link>
-          <Link to='/neet/online-coaching-class-11'>Class 11</Link>
-          <Link to='/neet/online-coaching-class-12'>Class 12</Link>
-          <Routes>
-
-            <Route path='/neet/online-coaching-class-11' element={<Class11Program/>}/>
-            <Route path='/neet/online-coaching-class-12' element={<Class12Program/>}/>
-            <Route path='/' element={<Landing/>}/>
-            <Route path='*' element={<ErrorPage/>}/>
-          </Routes>
-
-          Footer | Contact us
-        </BrowserRouter>
+        {count}
+        <button onClick={StartClock}>Start</button>
+        <button onClick={StopClock}>Stop</button>
       </div>
-  )
+    )
 }
 
-function Landing(){
-  return (
-    <div>
-      Welcome to allen
-    </div>
-  )
-}
-
-function Class11Program(){
-  return(
-    <div>
-      This is class 11
-    </div>
-  )
-}
-
-//most of the routing part can be done by wrapping up buttons and things in the link tag
-//note if we do it with a normal page it is no longer a single page app
-//we must use link tag so that it is a single page app
-
-//other than link we have the useNavigate hook which can also help us in routing
-
-
-function Class12Program(){
-  // navigate = useNavigate()
-
-  // function RedirectToLandingPage(){
-  //   navigate("/")
-  // }
-  return(
-    <div>
-       <button onClick={RedirectToLandingPage}>Go back to landing page</button>
-    </div>
-  )
-}
-
-function ErrorPage(){
-  return(
-    <div>
-      Page not found
-    </div>
-  )
-}
 export default App
