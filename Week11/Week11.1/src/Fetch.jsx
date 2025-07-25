@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import {usePostTitle} from './hooks/useFetch.js'
+import {useFetch} from './hooks/useFetch'
+import {usePrev} from './hooks/usePrev'
+
 
 
 //how can we get things from the backend?
@@ -26,15 +28,52 @@ import {usePostTitle} from './hooks/useFetch.js'
 //   )
 // }
 
-function App(){
+// function App(){
 
-  const title = usePostTitle()
+//   const title = usePostTitle()
 
+//   return(
+//     <div>
+//       {title}
+//     </div>
+//   )
+// }
+
+// function App(){
+//   const [postNo,setPostNo] = useState(1)
+//   const { loading, finalData } = useFetch("https://jsonplaceholder.typicode.com/posts/" + postNo)
+//   return(
+//     <div>
+//       <button onClick={()=>setPostNo(1)}>1</button>
+//       <button onClick={()=>setPostNo(2)}>2</button>
+//       <button onClick={()=>setPostNo(3)}>3</button>
+
+//       {loading ? 'loading....' : JSON.stringify(finalData)}
+//     </div>
+//   )
+// }
+
+//use prev hook basically helps us store the prevous value as the name suggests or say the prevois rerender 
+//it may be helpful further
+
+const App = () => {
+  const [count,setCount] = useState(0)
+  const previous = usePrev(count)
+
+  const inc = () => {
+    setCount(c => c+1)
+    // usePrev(count)
+  }
+  console.log({previous})
   return(
     <div>
-      {title}
+      <button onClick={inc}>{count}</button>
+      <div>The previous value was {previous}</div>
+
     </div>
   )
+  
+
 }
 
 export default App

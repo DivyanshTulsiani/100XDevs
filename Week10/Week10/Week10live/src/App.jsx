@@ -13,6 +13,11 @@ function App() {
     const [count,SetCount] = useState(0)
 
     //now we see the problem we can start the clock but we need a variable
+    //to store that clock so we can clear it from the console
+    //basically ref allows us to create a variable whose value even if we change does not rerender
+    //it persists across rerenders means if not chnaged it does not get reassigned\
+    //like say a normal let variable
+
     //to store the value it stopped at 
 
     
@@ -52,4 +57,3 @@ function App() {
 }
 
 export default App
-  
