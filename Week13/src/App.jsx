@@ -2,6 +2,8 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { Button } from './components/Buttons'
+import { Input } from './components/Input'
 
 // function App() {
 //   const [count, setCount] = useState(0)
@@ -61,19 +63,20 @@ import './App.css'
 
 const App = () => {
   return(
-    <div>
+    <div className='h-screen bg-[#002d58]'>
       <TopBar/>
       <Input/>
-      <ContinueButton/>
+      <Button children={"Continue"}/>
     </div>
-  )
+
+  ) 
 }
 
 
 function TopBar(){
   return(
   <div>
-    <div className='flex justify-center mt-30'> 
+    <div className='flex justify-center pt-30'> 
       <div className='mr-3'>
         <img src='./image.png' className='size-10'></img>
       </div>
@@ -84,32 +87,13 @@ function TopBar(){
     </div>
     <br/>
     <br/>
-    <div className='flex justify-center text-white text-4xl'>
+    <div className='flex justify-center text-white text-3xl mt-5'>
       Verify Your age
     </div>
   </div>
   )
 } 
 
-function Input(){
-  return(
-    <div className='flex justify-center'>
-    <div>
-      <div>
-        Please confirm your birth year. This data will not be stored.
-      </div>
-      <div className='flex justify-center'>
-        <input className='bg-gray-500' type='text' placeholder='Your Birth Year'/>
-
-      </div> 
-    </div>
-    </div>
-  )
-}
-
-function ContinueButton(){
-
-}
 
 
 

@@ -9,11 +9,16 @@ export default {
     extend: {
       colors: {
         blue: {
-
+          300: "#002d58",
+          400: "#18416a"
         },
         green: {
-
+          300: "#7e96a6"
+        },  
+        gray: {
+          300: "#18416a"
         }
+
       }
     },
   },
