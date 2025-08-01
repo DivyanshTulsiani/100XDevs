@@ -9,15 +9,23 @@ export const Otp = ({
 
   
 
-  
+  //very imp to know what we are doing here 
+  //we are creating a generic component where we enter the numberof sybotop boxes we want and it produces them
+  //this is being achieved by creating an array of 0s and having our reference point to that 
+  //sice we are unable to produce these many refs in an loop like the map we have to follow the above approach
+
+  //thus when we produce that comp and give the reference we have we are that that (e) menas whatever dom thingy is being created by the map
+  //is taken and ref.current which is our array and ref.current[index] = e meaning that specific index of our array is assigned to e
+  //now in our ondone and goback fn this is simple we are jsut assigning indexes of forward or prev indexes  wtith some boundary condns
+
   return(
     <>
     <div className="flex justify-center mt-4">
       {Array(number).fill(1).map((x,index)=>{
               return <OtpBox key={index} reference={(e) => ref.current[index] = e} onDone={() => {
-                console.log(ref);
-                console.log(index);
-                if(index >= 0 && index < 3 ){
+                // console.log(ref);
+                // console.log(index);
+                if(index >= 0 && index < number - 1){
                   ref.current[index + 1].focus()
                 }
                 else{
@@ -26,6 +34,8 @@ export const Otp = ({
 
               }} goBack={()=>{
                 if(index > 0){
+                  // ref.current[index].target.blur()
+                  // ref.current[index].target.value = ''
                   ref.current[index - 1].focus()
                 }
               }}/>
@@ -61,8 +71,10 @@ const OtpBox = ({
            goBack()
          }
       }} onChange={(e) => {
+        console.log("avd");
+        console.log(e.keyCode)
         const val = e.target.value
-        if(CheckNum(e.target.value)){
+        if(CheckNum(e.target.value) && e.target.value.length == 1){
           setinputBoxVal(val)
           onDone()
         }
