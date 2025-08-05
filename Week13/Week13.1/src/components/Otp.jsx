@@ -68,6 +68,7 @@ const OtpBox = ({
     <div>
       <input ref={reference} value={inputBoxVal} onKeyUp={(e)=>{
         if(e.key == 'Backspace'){
+            e.target.value = ''
            goBack()
          }
       }} onChange={(e) => {
