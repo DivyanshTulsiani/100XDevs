@@ -41,7 +41,7 @@ function App() {
   // )
 }
 
-function LightBulb(){
+function LightBulb(){ 
 
     return(
       <div>
