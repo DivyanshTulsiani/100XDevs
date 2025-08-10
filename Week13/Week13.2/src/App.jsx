@@ -5,6 +5,7 @@ import './App.css'
 import { SidebarClass1 } from './components/answers/basic-project-1'
 import { MainContent } from './components/MainContent'
 import { Sidebar } from './components/Sidebar'
+import { UseMedia } from './hooks/usemedia'
 
 // function App() {
 //   const [count, setCount] = useState(0)
