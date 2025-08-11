@@ -6,9 +6,9 @@ import { SidebarProvider } from "../App.jsx"
 import { PersonImg, Details } from "./icons/image.jsx"
 import { DataHeader } from "./DateHeaders.jsx"
 import { Date } from './icons/Date.jsx'
-import { DateApp } from "./DateApp.jsx"
+import { DateApp } from "./icons/DateApp.jsx"
 import { Live } from "./icons/Live.jsx"
-import { Options } from "./Options.jsx"
+import { Options } from "./icons/Options.jsx"
 // import img from "./icons8-calendar-50"
 // import { Upcoming } from "./icons/Upcoming.jsx"
 

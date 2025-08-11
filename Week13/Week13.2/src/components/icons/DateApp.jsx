@@ -1,5 +1,5 @@
-import { Live } from "./icons/Live.jsx"
-import { Upcoming } from "./icons/Upcoming.jsx"
+import { Live } from "./Live.jsx"
+import { Upcoming } from "./Upcoming.jsx"
 
 export const DateApp = (props) => {
 

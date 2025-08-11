@@ -35,6 +35,7 @@ export function useFetch(url){
     getDetails()
   },[url])
 
+  //clearing the intervaal should also be implemented
   useEffect(()=>{
     setInterval(getDetails, 10*1000)
   },[])
