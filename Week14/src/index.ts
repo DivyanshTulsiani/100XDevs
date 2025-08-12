@@ -59,20 +59,52 @@ delayedCall(log)
 
 //how to mention when we have an object??
 
-//well for oobjcts u can describe them as
+//well for oobjcts u can 
 
 
-function gree(user: {
+//we can create interfaces for types that are not so converntional
+//like an object in an object we casnt directly mention the type 
+//thats where interfaces help us
+function gree(user: userType){
+  console.log("hello" + user.name)  
+}
+
+interface userType{
   name: string,
   age: number
-}){
-  console.log("hello" + user.name)
+}
+
+let user: userType = {
+  name: "Div",
+  age: 20
 }
 
 
-let user = {
-  name:"Div",
-  age: 21
+//type is leting us do a join here
+type  SumInput = string | number
+
+//in types we can = while assigning which we cant incaser of a interface
+
+function sum2(a:SumInput, b:SumInput){
+    
+}
+//inshort interfaces are wqay we define our unique objects into a type
+//type in ts are ways we can union or intersect these interfaces into one single tyep
+//types also lets us do intersections 
+interface Employee{
+  name: string,
+  age: number
 }
 
-gree(user)
+interface Manager{
+  name: String,
+  department: String
+}
+
+type TeamLead = Employee & Manager
+
+let t: TeamLead = {
+  name: "Div",
+  age: 21,
+  department: "Tech"
+}
