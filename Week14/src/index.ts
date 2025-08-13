@@ -74,10 +74,10 @@ interface userType{
   age: number
 }
 
-let user: userType = {
-  name: "Div",
-  age: 20
-}
+// let user: userType = {
+//   name: "Div",
+//   age: 20
+// }
 
 
 //type is leting us do a join here
@@ -107,4 +107,129 @@ let t: TeamLead = {
   name: "Div",
   age: 21,
   department: "Tech"
+}
+
+//having an object having a object inside it and making a 
+//datatype out of it
+
+interface User{
+  name: string,
+  age: number,
+  address: {
+    city: string,
+    country: string,
+    pincode: number
+  }
+}
+
+let user: User = {
+  name: "Div",
+  age: 20,
+  address: {
+    city: "Gur",
+    country: "India",
+    pincode: 112121
+  }
+}
+
+function isLeg(user: User): boolean{
+  return user.age >= 18
+
+}
+
+let anst: boolean = isLeg(user)
+
+console.log(anst)
+
+
+interface People{
+  name: string,
+  age: number,
+  greet: () => string
+}
+
+let Peo: People = {
+  name: "Tim",
+  age: 19,
+  greet: () => {
+    return "hi"
+  }
+}
+
+
+let greeting = Peo.greet()
+console.log(greeting)
+
+interface People2{
+  name: string;
+  age: number
+}
+
+//interfaces in js or ts are like the ones in java in java we cannot have 
+//multiple inheritance this is where interfaces save the day
+//even in ts/js a class can implement a interface just like before
+//this class may further be used to extend or have other classes inherit it
+
+class Employee implements People2{
+  //we dont have to write this again but have to metion paublu
+  // name: string;
+  // age: number;
+  constructor(public name: string,public age: number){
+    this.name = name;
+    this.age = age;
+  }
+}
+let User2 = new Employee("hima", 29)
+
+console.log(User2.name)
+
+
+// interface Vote{
+//   name: string,
+//   age: number,
+//   isLegal(): boolean
+// }
+
+// //apparently cabt add fn in here we have to define them within the class
+// //cant add them from object????
+
+// class Voter implements Vote{
+//   constructor(public name: string,public age: number){
+//     this.age = age,  
+//     this.name = name
+//   }
+//   isLegal = ()=>{
+//       return this.age >= 18
+//   }
+  
+// }
+
+// class Voter2 extends Voter{
+//   constructor(name: string,age: number){
+//     super(name,age)
+//   }
+// }
+
+
+//we can implement using an abstract class aswell
+
+abstract class Vote{
+  name: string
+  constructor(name: string){
+    this.name = name
+  }
+
+  abstract greet: () => string
+}
+//one important thing here to remember is that we have to write public
+//so as to get those variables of abstract class or interface declared in
+//the place where we implement it
+class Voter implements Vote{
+  constructor(public name: string){
+    this.name = name
+  }
+
+  greet = () => {
+    return "Hi"
+  }
 }
