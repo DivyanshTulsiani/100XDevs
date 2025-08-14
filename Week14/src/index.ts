@@ -278,6 +278,29 @@ type Car = {
 
 //our intersection type would have 
 // {name age modelname insurance}
+//all these are valid baby & car
 //now it sounds not that intuitive as how can we have both when intersecting
 //but when we see how ts behave under the hood we realise its actual
 //meaning
+
+//similary when we do union in this case we can have all the ones present
+//in baby and all the ones in the car we have 
+//{name age} {modelname insurance} {name age modelname insurace} {name age happy dance}
+//all these are valid baby | car
+
+//IMPP
+
+//when i create an interface and add exta thing like i did in case of
+//type it will give me an error
+//but the thing is if i add an extra param  and refer to that to an 
+//intermediary point it would not give me an error
+
+interface point2d{
+  x: number
+  y: number
+}
+
+const intermed = {x:1, y:1, name: "hiko",age: 29}
+const r: point2d = intermed
+// direct assinging would give error name does not exist
+// let r: point2d = {x:1, y:1, name: "hiko",age: 29}
