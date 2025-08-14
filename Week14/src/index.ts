@@ -211,7 +211,12 @@ console.log(User2.name)
 // }
 
 
-//we can implement using an abstract class aswell
+//we can implement or actually extend using an abstract class aswell
+//one thing diff in these two is that for abstract classes we can
+//have default fn too like hello here
+
+//the diff in types and interfaces is that for interfaces we cant actually
+//implement them to a class
 
 abstract class Vote{
   name: string
@@ -220,16 +225,59 @@ abstract class Vote{
   }
 
   abstract greet: () => string
+  hello(){
+    console.log("hi there")
+  }
 }
 //one important thing here to remember is that we have to write public
 //so as to get those variables of abstract class or interface declared in
 //the place where we implement it
-class Voter implements Vote{
+class Voter extends Vote{
   constructor(public name: string){
+    super(name)
     this.name = name
   }
 
   greet = () => {
     return "Hi"
   }
+} 
+
+//IMPPPPPPPPPPPPPPPPPPPP
+
+//interrfaces abd types behave a little differently than we think
+
+//in interfaces the intersection and union looks like they are not behaving as
+//they should intersection feels more like union
+
+//THIS IS BCS IN TYPESCRIPT THESE TYPES ARE A SET OF VALUES
+//MEANING
+//when i write 
+type Baby = {
+  name: string
+  age: number
 }
+//the above baby type is set of values all sets that have name age are 
+//valid baby type if there is anything extra that is allowed too
+//this means it is a set of
+
+//{{name: age:  },{name: age: car: },{name: age: dance:},{name age modelname insurance}}
+//all the above ones can be termed as as valid baby types 
+
+type Car = {
+  modelname: string
+  insurance: boolean
+}
+
+//similarly for the above one as long as we have the req modelname and insurance
+//it does not matter if we have extras those extras are all allowed
+
+// {{name age modelname insurance}} this would also be here and we saqw it 
+//can be present in baby too
+//this means when now we take intersection
+
+//our intersection type would have 
+// {name age modelname insurance}
+//now it sounds not that intuitive as how can we have both when intersecting
+//but when we see how ts behave under the hood we realise its actual
+//meaning
